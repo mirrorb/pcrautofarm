@@ -16,7 +16,7 @@
 - 运行环境：[开发助手Android](https://wws.lanzous.com/iX7FTdqiuqd "点击下载")
 - 开发环境：[开发助手Windows](https://wws.lanzous.com/i8es6dqiz5c "点击下载")
 ## 说明: 
-- "用户信息.conf"中act用来存放账号,pwd用来存放密码,为一一对应的关系,账号数量不限。  
+- "用户信息.conf"中act用来存放账号,pwd用来存放密码,为一对一的关系,账号数量不限。  
 - .xsp脚本文件放在"/sdcard/xsp"下。
 - 请把修改后的"用户信息.conf"放入"/data/data/com.xxscript.idehelper/tengine/public"之后再运行脚本。  
 - 在开启某功能时请确保你已经开启并通关了该关卡。  
