@@ -1,7 +1,6 @@
 # pcrautofarm 项目仅供学习
 
 这是一个公主连结自动维护农场的项目全程自动托管,仅支持540x960手机版分辨率。  
-***
 ## 功能:  
 - 批量登录&退出
 - 地下城支援  (因为我的农场号等级不够所以地下城选支援的时候选的第二个)
@@ -17,5 +16,5 @@
 4.请确保工会排序为职务并将大号设置为副会长。  
 5.UI文本框提交的是从第几个账号开始,默认在第个29个账号停止任务。
 
-- 运行环境：[开发助手Android](https://wws.lanzous.com/iX7FTdqiuqd)
-- 开发环境：[开发助手Windows](https://wws.lanzous.com/i8es6dqiz5c)
+- 运行环境：[开发助手Android](https://wws.lanzous.com/iX7FTdqiuqd "点击下载")
+- 开发环境：[开发助手Windows](https://wws.lanzous.com/i8es6dqiz5c "点击下载")
