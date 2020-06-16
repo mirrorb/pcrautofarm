@@ -15,4 +15,6 @@
 3.在开启某功能时请确保你已经开启并通关了该关卡。  
 4.请确保工会排序为职务并将大号设置为副会长。  
 5.UI文本框提交的是从第几个账号开始,默认在第个29个账号停止任务。
-- 运行环境：[开发助手](https://wws.lanzous.com/iX7FTdqiuqd)
+
+- 运行环境：[开发助手Android](https://wws.lanzous.com/iX7FTdqiuqd)
+- 开发环境：[开发助手Windows](https://wws.lanzous.com/i8es6dqiz5c)
