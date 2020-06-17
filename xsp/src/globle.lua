@@ -29,7 +29,7 @@ function found_tap(TC,TP) --找到点击
 			break
 		end
 		tapT(TP)
-		mSleep(1000)
+		mSleep(2000)
 	end
 end
 function swip(p1,p2) --p1滑到p2
