@@ -60,15 +60,7 @@ function tower_support()
 	none_tap(color.确认支援,point.地下城挑战)
 	none_tap(color.开始战斗,point.确认支援)
 	none_tap(color.撤退确认,point.战斗撤退)
-	while true do
-		mSleep(300)
-		x, y = mfColor(color.LOADING)
-		if x > -1 then
-			break
-		end
-		tapT(point.撤退确认)
-	end
-	until_found(800,color.地下城在图中)
+	none_tap(color.地下城在图中,point.撤退确认)
 	none_tap(color.确认,point.退出地下城)
 	none_tap(color.地下城选图,point.确认)
 	none_tap(color.主界面,point.主界面)
