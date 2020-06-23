@@ -1,5 +1,5 @@
 # pcrautofarm 项目仅供学习
-
+![image](https://raw.githubusercontent.com/caicaizii/pcrautofarm/master/uiPreview.png)  
 这是一个公主连结自动维护农场的项目,仅支持模拟器540x960手机版分辨率。  
 ## 功能:  
 - 运行脚本自动启动游戏并全程托管
