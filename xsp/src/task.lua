@@ -127,7 +127,11 @@ function sweep()
 		none_tap(color.确认,point.开始扫荡)
 		mSleep(800)
 		found_tap(color.确认,{x, y})
-		t1, x, y = until_found(800, color.扫荡完成)
+		t1, x, y = until_found(800, color.跳过, color.扫荡完成)
+		if t1 == 0 then
+			found_tap(color.跳过,{x, y})
+			t1, x, y = until_found(800, color.扫荡完成)
+		end
 		found_tap(color.扫荡完成,{x, y})
 		mSleep(800)
 		none_tap(color.主线界面,point.取消)
@@ -144,13 +148,38 @@ function sweep()
 	none_tap(color.确认,point.开始扫荡)
 	mSleep(800)
 	found_tap(color.确认,{x, y})
-	t1, x, y = until_found(800, color.扫荡完成)
+	t1, x, y = until_found(800, color.跳过, color.扫荡完成)
+	if t1 == 0 then
+		found_tap(color.跳过,{x, y})
+		t1, x, y = until_found(800, color.扫荡完成)
+	end
 	found_tap(color.扫荡完成,{x, y})
-	mSleep(500)
+	mSleep(800)
+	t1, x, y = until_found(800,color.升级,color.扫荡界面)
+	if t1 == 0 then
+		found_tap(color.升级,{x, y})
+		until_found(800,color.扫荡界面)
+		mSleep(1000)
+		none_tap(color.确认,point.开始扫荡)
+		mSleep(800)
+		found_tap(color.确认,{x, y})
+		t1, x, y = until_found(800, color.跳过, color.扫荡完成)
+		if t1 == 0 then
+			found_tap(color.跳过,{x, y})
+			t1, x, y = until_found(800, color.扫荡完成)
+		end
+		found_tap(color.扫荡完成,{x, y})
+		until_found(800,color.扫荡界面)
+	end
 	none_tap(color.主线界面,point.取消)
 	none_tap(color.主界面,point.主界面)
 end
 function daily_task()
+	explore()
+	gacha()
+	get_task_rewards()
+end
+function explore()
 	if string.find(results.choose_task,"6") then --探索
 		none_tap(color.冒险界面,point.冒险)
 		none_tap(color.探索界面,point.探索)
@@ -163,9 +192,7 @@ function daily_task()
 		mSleep(800)
 		none_tap(color.确认,point.开始扫荡)
 		none_tap(color.弹出探索,point.确认)
-		t1, x, y = until_found(800, color.探索扫荡完成)
-		found_tap(color.探索扫荡完成,{x, y})
-		until_found(800,color.探索界面)
+		none_tap(color.探索界面,point.探索扫荡完成)
 		none_tap(color.探索里页,point.玛娜探索)
 		none_tap(color.扫荡界面,point.中间探索)
 		mSleep(800)
@@ -174,11 +201,11 @@ function daily_task()
 		tapT(point.加)
 		mSleep(800)
 		none_tap(color.确认,point.开始扫荡)
-		found_tap(color.确认,{x, y})
-		t1, x, y = until_found(800, color.探索扫荡完成)
-		found_tap(color.探索扫荡完成,{x, y})
-		until_found(800,color.探索界面)
+		none_tap(color.弹出探索,point.确认)
+		none_tap(color.探索界面,point.探索扫荡完成)
 	end
+end
+function gacha()
 	while true do
 		x, y = mfColor(color.扭蛋界面)
 		x1, y1 = mfColor(color.十连设置)
@@ -206,7 +233,8 @@ function daily_task()
 	t1, x, y = until_found(800,color.关闭玛娜界面)
 	found_tap(color.关闭玛娜界面,{x, y})
 	none_tap(color.主界面,point.主界面)
-	
+end
+function get_gift_rewards()
 	x, y = mfColor(color.有邮件)
 	if x > -1 then
 		none_tap(color.邮件全部领取,point.邮件)
@@ -219,10 +247,6 @@ function daily_task()
 		found_tap(color.关闭邮箱,{x, y})
 		none_tap(color.主界面,point.主界面)
 	end
-	get_task_rewards()
-	--扭蛋
-	--mana
-	--探索
 end
 function get_task_rewards()
 	x, y = mfColor(color.任务需要领)

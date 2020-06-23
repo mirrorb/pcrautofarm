@@ -18,6 +18,7 @@ while true do--每个账号
 		thumbs_up()--成员点赞
 	end
 	if string.find(results.choose_task,"3") then
+		get_gift_rewards()
 		sweep()--1-1刷图
 	end
 	if string.find(results.choose_task,"5") then
