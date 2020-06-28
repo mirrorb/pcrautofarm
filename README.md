@@ -1,8 +1,5 @@
 # pcrautofarm 项目仅供学习
 ![image](https://raw.githubusercontent.com/caicaizii/pcrautofarm/master/uiPreview.png)  
-  --------------------------------------------------------------------------------------
-
-
   
 ## 功能:  
 - 运行脚本自动启动游戏并全程托管
