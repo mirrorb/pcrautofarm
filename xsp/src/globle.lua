@@ -19,7 +19,7 @@ function none_tap(TC,TP)  --找不到点击
 			break
 		end
 		tapT(TP)
-		mSleep(2000)
+		mSleep(500)
 	end
 end
 function found_tap(TC,TP) --找到点击
@@ -29,7 +29,7 @@ function found_tap(TC,TP) --找到点击
 			break
 		end
 		tapT(TP)
-		mSleep(2000)
+		mSleep(500)
 	end
 end
 function swip(p1,p2) --p1滑到p2
@@ -164,6 +164,6 @@ function until_found(delay,T1,T2,T3,T4,T5,T6)  -- 用于识别多种界面返回
 		until xf1 > -1
 		return 0, xf1, yf1
 	else
-		print"界面发觉():参数错误"
+		print"until_found():参数错误"
 	end
 end
