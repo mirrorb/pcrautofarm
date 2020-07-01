@@ -129,7 +129,7 @@ function sweep()
 		touchUp(1, point.加[1],point.加[2])
 		none_tap(color.确认,point.开始扫荡)
 		found_tap(color.确认,{x, y})
-		sweep_skip_back()
+		sweep_skip_back(true)
 		if string.find(results.choose_task,"3") then
 			none_tap(color.n图,point.n图)
 		end
@@ -150,31 +150,38 @@ function sweep()
 		touchUp(1, point.加[1],point.加[2])
 		none_tap(color.确认,point.开始扫荡)
 		found_tap(color.确认,{x, y})
-		sweep_skip_back()
+		sweep_skip_back(false)
 	end
 end
-function sweep_skip_back()
+function sweep_skip_back(hard)
 	t1, x, y = until_found(nil,color.跳过, color.扫荡完成)
 	if t1 == 0 then
 		found_tap(color.跳过,{x, y})
 		t1, x, y = until_found(nil,color.扫荡完成)
 	end
 	found_tap(color.扫荡完成,{x, y})
-	t1, x, y = until_found(nil,color.升级,color.扫荡界面,color.弹出限时,color.团队战)
-	if t1 == 0 then
-		found_tap(color.升级,{x, y})
-		until_found(nil,color.扫荡界面)
-		mSleep(1000)
-		none_tap(color.确认,point.开始扫荡)
-		mSleep(800)
-		found_tap(color.确认,{x, y})
-		t1, x, y = until_found(nil,color.跳过, color.扫荡完成)
+	if hard then
+		t1, x, y = until_found(nil,color.扫荡界面,color.弹出限时,color.团队战)
+	else
+		t1, x, y = until_found(nil,color.升级,color.扫荡界面,color.弹出限时,color.团队战)
 		if t1 == 0 then
-			found_tap(color.跳过,{x, y})
-			t1, x, y = until_found(nil,color.扫荡完成)
+			found_tap(color.升级,{x, y})
+			t1, x, y = until_found(nil,color.扫荡界面,color.团队战)
+			if t1 == 1 then
+				none_tap(color.扫荡界面,point.团队战取消)
+			end
+			mSleep(1000)
+			none_tap(color.确认,point.开始扫荡)
+			mSleep(800)
+			found_tap(color.确认,{x, y})
+			t1, x, y = until_found(nil,color.跳过, color.扫荡完成)
+			if t1 == 0 then
+				found_tap(color.跳过,{x, y})
+				t1, x, y = until_found(nil,color.扫荡完成)
+			end
+			found_tap(color.扫荡完成,{x, y})
+			until_found(nil,color.扫荡界面,color.弹出限时,color.团队战)
 		end
-		found_tap(color.扫荡完成,{x, y})
-		until_found(nil,color.扫荡界面)
 	end
 	none_tap(color.主线界面,point.取消)
 end
