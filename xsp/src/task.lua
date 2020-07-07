@@ -60,13 +60,16 @@ function tower_support()
 	none_tap(color.地下城在图中,point.撤退确认)
 	none_tap(color.确认,point.退出地下城)
 	none_tap(color.地下城选图,point.确认)
+	none_tap(color.主界面,point.主界面)
 end
 function thumbs_up()
 	none_tap(color.行会界面,point.行会)
+	--[[
 	if string.find(results.choose_task,"2") then
 		donate()
 	end
-	if string.find(results.choose_task,"1") then
+	--]]
+	--if string.find(results.choose_task,"1") then
 		none_tap(color.点赞界面,point.成员信息)
 		found_tap(color.行会界面,point.成员信息)
 		found_tap(color.点赞界面,point.点赞b)
@@ -77,8 +80,9 @@ function thumbs_up()
 		if x > -1 then --点满了
 			thumbs_up_full = true
 		end
-	end
+	--end
 end
+--[[捐助
 function donate()
 	x, y = mfColor(color.黄色下箭头)
 	if x > -1 then
@@ -113,13 +117,14 @@ function donate()
 		until_found(nil,color.行会界面)
 	end
 end
-function sweep()
+--]]
+function sweep(mode)
 	get_task_rewards()
 	get_house_rewards()
 	get_gift_rewards()
 	none_tap(color.冒险界面,point.冒险)
 	none_tap(color.主线界面,point.主线)
-	if string.find(results.choose_task,"4") then --h图
+	if mode == 'h'or mode == 'd' then --h图
 		none_tap(color.h图,point.h图)
 		none_tap(color.一h图,point.向左)
 		none_tap(color.扫荡界面,point.h一杠一)
@@ -130,12 +135,12 @@ function sweep()
 		none_tap(color.确认,point.开始扫荡)
 		found_tap(color.确认,{x, y})
 		sweep_skip_back(true)
-		if string.find(results.choose_task,"3") then
+		if string.find(results.choose_task,"2") then
 			none_tap(color.n图,point.n图)
 		end
 	end
 	--n
-	if string.find(results.choose_task,"3") then
+	if mode == 'n' or mode == 'd' then
 		none_tap(color.一n图,point.向左)
 		none_tap(color.扫荡界面,point.n一杠一)
 		mSleep(1000)
@@ -160,15 +165,15 @@ function sweep_skip_back(hard)
 		t1, x, y = until_found(nil,color.扫荡完成)
 	end
 	found_tap(color.扫荡完成,{x, y})
-	if hard then
-		t1, x, y = until_found(nil,color.扫荡界面,color.弹出限时,color.团队战)
-	else
-		t1, x, y = until_found(nil,color.升级,color.扫荡界面,color.弹出限时,color.团队战)
+	t1, x, y = until_found(nil,color.升级,color.扫荡界面,color.弹出限时,color.团队战)
+	if not hard then
 		if t1 == 0 then
 			found_tap(color.升级,{x, y})
-			t1, x, y = until_found(nil,color.扫荡界面,color.团队战)
+			t1, x, y = until_found(nil,color.扫荡界面,color.团队战,color.弹出限时)
 			if t1 == 1 then
 				none_tap(color.扫荡界面,point.团队战取消)
+			elseif t1 == 2 then
+				none_tap(color.扫荡界面,point.取消)
 			end
 			mSleep(1000)
 			none_tap(color.确认,point.开始扫荡)
@@ -186,40 +191,53 @@ function sweep_skip_back(hard)
 	none_tap(color.主线界面,point.取消)
 end
 function daily_task()
-	explore()
 	gacha()
 	get_task_rewards()
 	none_tap(color.主界面,point.主界面)
 	x, y = mfColor(color.体力没了)
-	if x == 1 and string.find(results.choose_task,"3") then
-		sweep()
+	if x == -1 and string.find(results.choose_task,"2") then
+		none_tap(color.冒险界面,point.冒险)
+		none_tap(color.主线界面,point.主线)
+		none_tap(color.一n图,point.向左)
+		none_tap(color.扫荡界面,point.n一杠一)
+		mSleep(1000)
+		touchDown(1, point.加[1],point.加[2])
+		while true do
+			x, y = mfColor(color.剩余体力)
+			if x == -1 then
+				break
+			end
+			mSleep(500)
+		end
+		touchUp(1, point.加[1],point.加[2])
+		none_tap(color.确认,point.开始扫荡)
+		found_tap(color.确认,{x, y})
+		sweep_skip_back(false)
 	end
 end
 function explore()
-	if string.find(results.choose_task,"6") then --探索
-		none_tap(color.冒险界面,point.冒险)
-		none_tap(color.探索界面,point.探索)
-		none_tap(color.探索里页,point.经验探索)
-		none_tap(color.扫荡界面,point.中间探索)
-		mSleep(800)
-		tapT(point.加)
-		mSleep(800)
-		tapT(point.加)
-		mSleep(800)
-		none_tap(color.确认,point.开始扫荡)
-		none_tap(color.跳过,point.确认)
-		none_tap(color.探索界面,point.探索扫荡完成)
-		none_tap(color.探索里页,point.玛娜探索)
-		none_tap(color.扫荡界面,point.中间探索)
-		mSleep(800)
-		tapT(point.加)
-		mSleep(800)
-		tapT(point.加)
-		mSleep(800)
-		none_tap(color.确认,point.开始扫荡)
-		none_tap(color.跳过,point.确认)
-		none_tap(color.探索界面,point.探索扫荡完成)
-	end
+	none_tap(color.冒险界面,point.冒险)
+	none_tap(color.探索界面,point.探索)
+	none_tap(color.探索里页,point.经验探索)
+	none_tap(color.扫荡界面,point.中间探索)
+	mSleep(800)
+	tapT(point.加)
+	mSleep(800)
+	tapT(point.加)
+	mSleep(800)
+	none_tap(color.确认,point.开始扫荡)
+	none_tap(color.跳过,point.确认)
+	none_tap(color.探索界面,point.探索扫荡完成)
+	none_tap(color.探索里页,point.玛娜探索)
+	none_tap(color.扫荡界面,point.中间探索)
+	mSleep(800)
+	tapT(point.加)
+	mSleep(800)
+	tapT(point.加)
+	mSleep(800)
+	none_tap(color.确认,point.开始扫荡)
+	none_tap(color.跳过,point.确认)
+	none_tap(color.探索界面,point.探索扫荡完成)
 end
 function gacha()
 	while true do

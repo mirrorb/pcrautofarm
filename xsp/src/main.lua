@@ -12,15 +12,29 @@ while true do--每个账号
 	if string.find(results.choose_task,"0") then
 		tower_support()--地下城支援
 	end
+	--[[
 	if (string.find(results.choose_task,"1") or string.find(results.choose_task,"2")) and (not thumbs_up_full) then
 		thumbs_up()--成员点赞
 	end
-	if string.find(results.choose_task,"3") or string.find(results.choose_task,"4") then
+	--]]
+	if string.find(results.choose_task,"1") and (not thumbs_up_full) then
+		thumbs_up()--成员点赞
+	end
+	if string.find(results.choose_task,"2") and string.find(results.choose_task,"3") then
 		get_gift_rewards()
-		sweep()--主线刷图
+		sweep('d')--主线刷图
+	elseif string.find(results.choose_task,"2") then
+		get_gift_rewards()
+		sweep('n')--主线刷图
+	elseif string.find(results.choose_task,"3") then
+		get_gift_rewards()
+		sweep('h')--主线刷图
+	end
+	if string.find(results.choose_task,"4") then
+		daily_task()--简单日常任务
 	end
 	if string.find(results.choose_task,"5") then
-		daily_task()--简单日常任务
+		explore()--探索
 	end
 	sign_out()
 	if loopc == count then

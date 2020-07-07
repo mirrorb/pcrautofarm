@@ -25,7 +25,7 @@
 			{
 				"type" : "CheckBoxGroup",
 				"id" : "choose_task",
-				"list" : "地下城支援,成员点赞,捐赠装备,刷n图1-1,刷h图1-1,日常任务,探索",
+				"list" : "地下城支援,成员点赞,刷n图1-1,刷h图1-1,日常任务,探索",
 				"select" : "0@1@2@3@4@5@6",
 				"size" : 23,
 				"orientation" : "vertical",
