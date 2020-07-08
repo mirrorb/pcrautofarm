@@ -30,11 +30,11 @@ while true do--每个账号
 		get_gift_rewards()
 		sweep('h')--主线刷图
 	end
-	if string.find(results.choose_task,"4") then
-		daily_task()--简单日常任务
-	end
 	if string.find(results.choose_task,"5") then
 		explore()--探索
+	end
+	if string.find(results.choose_task,"4") then
+		daily_task()--简单日常任务
 	end
 	sign_out()
 	if loopc == count then
