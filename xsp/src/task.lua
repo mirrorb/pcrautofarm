@@ -28,7 +28,7 @@ function go_home()
 	mSleep(500)
 	inputText(pwd[loopc])
 	mSleep(800)
-	none_tap(color.登录成功,point.登录)
+	found_tap(color.登录界面,point.登录)
 	while true do
 		mSleep(800)
 		tapT(point.跳过点)
