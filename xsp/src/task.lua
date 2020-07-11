@@ -28,8 +28,24 @@ function go_home()
 	mSleep(500)
 	inputText(pwd[loopc])
 	mSleep(800)
-	tapT(point.登录)
-	none_tap(color.主界面,point.跳过点)
+	none_tap(color.登录成功,point.登录)
+	while true do
+		mSleep(800)
+		tapT(point.跳过点)
+		mSleep(800)
+		x, y = mfColor(color.索尔兰德杯)
+		x1, y2 = mfColor(color.主界面)
+		if x > -1 then
+			none_tap(color.比赛开始,point.p4)
+			found_tap(color.比赛开始,point.比赛开始)
+			until_found(nil,color.剧情跳过)
+			found_tap(color.剧情跳过,point.跳过)
+			none_tap(color.主界面,point.跳过点)
+			break
+		elseif x1 > -1 then
+			break
+		end
+	end
 	mSleep(800)
 	none_tap(color.主界面,point.跳过点)
 end
@@ -226,7 +242,7 @@ function explore()
 	tapT(point.加)
 	mSleep(800)
 	none_tap(color.确认,point.开始扫荡)
-	none_tap(color.跳过,point.确认)
+	found_tap(color.确认,point.确认)
 	none_tap(color.探索界面,point.探索扫荡完成)
 	none_tap(color.探索里页,point.玛娜探索)
 	none_tap(color.扫荡界面,point.中间探索)
@@ -236,7 +252,7 @@ function explore()
 	tapT(point.加)
 	mSleep(800)
 	none_tap(color.确认,point.开始扫荡)
-	none_tap(color.跳过,point.确认)
+	found_tap(color.确认,point.确认)
 	none_tap(color.探索界面,point.探索扫荡完成)
 end
 function gacha()
